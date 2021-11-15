@@ -3,6 +3,11 @@
 
 using namespace std;
 
+char to_str(int num)
+{
+    return '0' + num;
+}
+
 int get_abs(int num) // returns module number
 {
 	if (num < 0)
@@ -120,7 +125,7 @@ string get_toBin_first(int num) // returns before dot bin form of number
 		result += "0";
 	while (num != 0) // adding numbers to answer (not reversed)
 	{
-		result += to_string(num % 2);
+		result += to_str(num % 2);
 		num /= 2;
 	}
 	result = get_reverse_str(result); // reversing answer
@@ -139,7 +144,7 @@ string get_toBin_second(int num, int len) // returns after dot bin form of numbe
 		// e.g. (1).75 -> (2).75 * 2 = 1.5 -> (3)adding 1 (because we have 1.5 and need (int)form) -> (4)1.5 % 1 = .5
 		// algoritm calculats result using (int) => we adding 'k' using 'len'
 		num *= 2;
-		result += to_string(num / k);
+		result += to_str(num / k);
 		num %= k;
 		i++;
 	}
@@ -162,7 +167,7 @@ string get_toBin(string str) // returns bin form of number
 			if (!afterDot) // first number
 			{
 				num1 *= 10;
-				num1 += str[i] - '0'; 
+				num1 += str[i] - '0';
 			}
 			else // second number
 			{
@@ -196,7 +201,7 @@ string get_IEEE_754(string str)
 	}
 	if (str == "0.0") // if number is zero
 	{
-		result = to_string(sign);
+		result = to_str(sign);
 		for (int i = 0; i < 31; i++)
 			result += '0';
 	}
@@ -208,7 +213,7 @@ string get_IEEE_754(string str)
 			e += '0';
 		e += get_toBin_first(127 + get_exponent(str)); // calculate exponent
 		string mantiss = get_mantiss(str); // calculate mantiss
-		result = to_string(sign) + e + mantiss; // return IEEE-754 form of number
+		result = to_str((int)sign) + e + mantiss; // return IEEE-754 form of number
 	}
 	return result;
 }
