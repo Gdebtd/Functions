@@ -8,13 +8,6 @@ char to_str(int num)
     return '0' + num;
 }
 
-int get_abs(int num) // returns module number
-{
-	if (num < 0)
-		num *= -1;
-	return num;
-}
-
 int get_size(string str) // returns size of string
 {
 	int i = 0;
@@ -34,16 +27,6 @@ int get_len(int num, int del) // returns length of number (deviding by del)
 		i++;
 	}
 	return i;
-}
-
-bool have_dot(string str) // returns 1 if string have '.' and 0 if haven't
-{
-	for (int i = 0; i < get_size(str); i++)
-	{
-		if (str[i] == '.')
-			return true;
-	}
-	return false;
 }
 
 string get_reverse_str(string str) // returns reversed string
@@ -160,7 +143,7 @@ string get_toBin(string str) // returns bin form of number
 	bool afterDot = false;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '.') // if before '.', then first number, else - second
+		if (str[i] == '.' || str[i] == ',') // if before '.', then first number, else - second
 			afterDot = true;
 		else
 		{
@@ -195,16 +178,20 @@ string get_IEEE_754(string str)
 		for (int i = 1; i < get_size(_str); i++) // recalculate number without '-'
 			str += _str[i];
 	}
-	if (!have_dot(str)) // is haven't '.', then we have to add it
-	{
-		str += ".0";
-	}
-	if (str == "0.0") // if number is zero
+	if (str == "0" || str == "0.0" || str == "0,0") // if number is zero
 	{
 		result = to_str(sign);
 		for (int i = 0; i < 31; i++)
 			result += '0';
 	}
+	else if (str == "inf")
+    {
+		result = to_str(sign);
+		for (int i = 0; i < 8; i++)
+            result += '1';
+        for (int i = 0; i < 23; i++)
+            result += '0';
+    }
 	else
 	{
 		str = get_toBin(str); // calculate bin form
