@@ -170,7 +170,7 @@ string get_IEEE_754(string str)
 {
 	string result = "";
 	bool sign = false; // sign = 0
-	if (!(str[0] >= '0' && str[0] <= '9')) // if number is negative
+	if (str[0] == '-' || str[0] == '+') // if number is negative
 	{
 		if (str[0] == '-')
 			sign = true; // sign = 1
