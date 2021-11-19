@@ -170,9 +170,10 @@ string get_IEEE_754(string str)
 {
 	string result = "";
 	bool sign = false; // sign = 0
-	if (str[0] == '-') // if number is negative
+	if (!(str[0] >= '0' && str[0] <= '9')) // if number is negative
 	{
-		sign = true; // sign = 1
+		if (str[0] == '-')
+			sign = true; // sign = 1
 		string _str = str;
 		str = "";
 		for (int i = 1; i < get_size(_str); i++) // recalculate number without '-'
@@ -185,13 +186,19 @@ string get_IEEE_754(string str)
 			result += '0';
 	}
 	else if (str == "inf" || str == "INF" || str == "Inf" || str == "infinity" || str == "INFINITY" || str == "Infinity")
-    {
+	{
 		result = to_str(sign);
 		for (int i = 0; i < 8; i++)
-            result += '1';
-        for (int i = 0; i < 23; i++)
-            result += '0';
-    }
+		result += '1';
+		for (int i = 0; i < 23; i++)
+			result += '0';
+	}
+	else if (str == "nan" || str == "NaN" || str == "NAN")
+	{
+		result = to_str(sign);
+		for (int i = 0; i < 31; i++)
+			result += '1';
+	}
 	else
 	{
 		str = get_toBin(str); // calculate bin form
