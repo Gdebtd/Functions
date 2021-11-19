@@ -184,7 +184,7 @@ string get_IEEE_754(string str)
 		for (int i = 0; i < 31; i++)
 			result += '0';
 	}
-	else if (str == "inf")
+	else if (str == "inf" || str == "INF" || str == "Inf" || str == "infinity" || str == "INFINITY" || str == "Infinity")
     {
 		result = to_str(sign);
 		for (int i = 0; i < 8; i++)
