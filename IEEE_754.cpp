@@ -189,7 +189,7 @@ string get_IEEE_754(string str)
 	{
 		result = to_str(sign);
 		for (int i = 0; i < 8; i++)
-		result += '1';
+			result += '1';
 		for (int i = 0; i < 23; i++)
 			result += '0';
 	}
