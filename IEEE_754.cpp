@@ -16,7 +16,7 @@ int get_size(string str) // returns size of string
 	return i;
 }
 
-int get_len(int num, int del) // returns length of number (deviding by del)
+int get_len(unsigned long long num, int del) // returns length of number (deviding by del)
 {
 	int i = 0;
 	if (num == 0)
@@ -100,7 +100,7 @@ string get_mantiss(string str) // returns bin form of mantiss (23 bits)
 	return result;
 }
 
-string get_toBin_first(int num) // returns before dot bin form of number
+string get_toBin_first(unsigned long long num) // returns before dot bin form of number
 {
 	string result = "";
 	int len = get_len(num, 2); // get length in 2nd system
@@ -115,10 +115,10 @@ string get_toBin_first(int num) // returns before dot bin form of number
 	return result;
 }
 
-string get_toBin_second(int num, int len) // returns after dot bin form of number
+string get_toBin_second(unsigned long long num, int len) // returns after dot bin form of number
 {
 	string result = "";
-	int k = 1;
+	unsigned long long k = 1;
 	for (int i = 0; i < len; i++) // get pow(10, len)
 		k *= 10;
 	int i = 0;
@@ -138,8 +138,8 @@ string get_toBin(string str) // returns bin form of number
 {
 	string result = "";
 	int i = 0;
-	int num1 = 0, num2 = 0;
-	int len2 = 0;
+	unsigned long long num1 = 0, num2 = 0;
+	unsigned long long len2 = 0;
 	bool afterDot = false;
 	while (str[i] != '\0')
 	{
